@@ -38,8 +38,6 @@ class Explorer extends React.PureComponent {
         </div>
       )));
     }
-
-    return null;
   }
 }
 
