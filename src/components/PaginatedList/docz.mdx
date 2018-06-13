@@ -1,0 +1,26 @@
+---
+name: Paginated List
+---
+
+import PaginatedList from './index';
+import { Playground, PropsTable } from 'docz'
+
+# PaginatedList:
+
+## Basic usage
+
+<Playground>
+    <PaginatedList
+        data={[
+            { name: 'Dave', age: 42, place_of_birth: 'USA' },
+            { name: 'Jean', age: 23, place_of_birth: 'USA' },
+            { name: 'Stevie', age: 30, place_of_birth: 'UK' },
+        ]}
+        onPrevious={() => { alert('Navigating to previous page...'); }}
+        onNext={() => { alert('Navigating to next page...'); }}
+    />
+</Playground>
+
+## Props
+
+<PropsTable of={PaginatedList} />
