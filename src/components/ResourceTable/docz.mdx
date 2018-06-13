@@ -1,0 +1,20 @@
+---
+name: Resource Table
+---
+
+import ResourceTable from './index';
+import { Playground, PropsTable } from 'docz'
+
+# ResourceTable:
+
+## Basic usage
+
+<Playground>
+    <ResourceTable
+        resource={{ name: 'Dave', age: 42, place_of_birth: 'USA', favourite_food: 'Chips', height: '160 metres' }}
+    />
+</Playground>
+
+## Props
+
+<PropsTable of={ResourceTable} />

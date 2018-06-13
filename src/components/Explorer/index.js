@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Progress } from 'reactstrap';
+
 import chunkedMap from '../../utils/chunked-map';
 import RootResource from '../RootResource';
 import PaginatedResource from '../PaginatedResource';
+import ResourceTable from '../ResourceTable';
 
 class Explorer extends React.PureComponent {
   fetchData(endpoint) {
@@ -28,7 +30,7 @@ class Explorer extends React.PureComponent {
     if (data.count) {
       return <PaginatedResource data={data} />
     } else if (data.url) {
-      // render resource component
+      return <ResourceTable resource={data} />
     } else {
       return chunkedMap(Object.entries(data), 3, ((row, index) => (
         <div key={index} className="row">
