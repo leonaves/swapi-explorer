@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch, { data }) => {
   return ({
     onPrevious: data.previous && fetchDataDispatcher(data.previous),
     onNext: data.next && fetchDataDispatcher(data.next),
+    onSelect: (endpoint) => fetchDataDispatcher(endpoint)(),
     data: data.results,
   });
 };

@@ -2,3 +2,7 @@
   width: 100%;
   overflow: auto;
 }
+
+.clickable_row {
+  cursor: pointer;
+}

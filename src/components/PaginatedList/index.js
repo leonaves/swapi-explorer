@@ -5,10 +5,10 @@ import { Button, Table } from 'reactstrap';
 import titlecase from '../../utils/titlecase';
 import './styles.css';
 
-const PaginatedList = ({ data, onPrevious = false, onNext = false }) => (
+const PaginatedList = ({ data, onPrevious = false, onNext = false, onSelect }) => (
   <div className="paginated_container">
     <div className="paginated_table">
-      <Table bordered>
+      <Table bordered hover>
         <thead>
           <tr>
             {Object.keys(data[0])
@@ -21,11 +21,16 @@ const PaginatedList = ({ data, onPrevious = false, onNext = false }) => (
         </thead>
         <tbody>
           {data.map(row => (
-            <tr key={Object.values(row)[0]}>
+            <tr className="clickable_row" onClick={() => onSelect(row.url)} key={Object.values(row)[0]}>
               {Object.keys(row)
                 .filter(key => !Array.isArray(row[key]))
-                .map(key => <td key={key + row[key]}>{row[key]}</td>)
-              }
+                .map((key, index) => {
+                  if (index === 0) {
+                    return <th scope="row" key={key + row[key]}>{titlecase(row[key])}</th>;
+                  } else {
+                    return <td key={key + row[key]}>{titlecase(row[key])}</td>;
+                  }
+                })}
             </tr>
           ))}
         </tbody>
@@ -50,6 +55,8 @@ PaginatedList.propTypes = {
   /** Function to be executed when the "next page" button is clicked.
    * If not passed, button isn't rendered. */
   onNext: PropTypes.func,
+  /** Function to be executed when any resource is clicked. */
+  onSelect: PropTypes.func,
 };
 
 export default PaginatedList;
